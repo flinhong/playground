@@ -1,0 +1,203 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+		body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{
+    margin: 0;
+    padding: 0;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+    display: block;
+}
+
+audio, canvas, video {
+    display: inline-block;
+}
+
+img {
+    border: none;
+    vertical-align: middle;
+}
+
+ul, ol {
+    /*list-style: none;*/
+}
+
+.clear {
+    *zoom: 1;           /* for IE 6/7 */
+}
+
+.clear:before, .clear:after {
+    height: 0; 
+    content: "";
+    font-size: 0;
+    display: table;
+    line-height: 0;     /* for Opera */
+    visibility: hidden;
+}
+
+.clear:after {
+    clear: both;
+}
+
+body {
+    font-size: 14px;
+    color: #666;
+    font-family: "Microsoft YaHei", "微软雅黑", Helvetica, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", Helvetica, Tahoma, "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif; 
+    background: #fff;
+    text-align: center;
+}
+
+#layout {
+    text-align: left;
+}
+
+#layout > header, .btns {
+    padding: 15px 0;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.btns {
+    padding-top: 0;
+}
+
+.btns button {
+    padding: 2px 8px;
+}
+
+#layout > header > h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.btns button, .btn {
+    padding: 8px 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    cursor: pointer;
+    -webkit-transition: background 300ms ease-out;
+    transition: background 300ms ease-out;
+}
+
+.btns button:hover, .btn:hover {
+    background: #f6f6f6;
+}
+
+select {
+    font-size: 12px;
+    width: 170px;
+    align-content: center;
+}
+
+#note-list {
+    width: 300px;
+}
+
+.auth button {
+    margin-top: -2em;
+    float: right;
+    height: 30px;
+    padding: 0 10px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #ffffff;
+    border-radius: 1px;
+    background-color: #2196f3;
+    border: none;
+    -webkit-box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.1);
+    -moz-box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.1);
+    box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.1);
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    font-family: 'Roboto', 'Helvetica', 'Arial', 'Sans Serif';
+    box-sizing: border-box;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;    
+}
+
+#signout:active, #singout:focus, #save:active, #save:focus {
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+}
+
+#signout:hover, #save:hover {
+    color: #c2473e;
+    cursor: pointer;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;    
+}
+
+.auth button:active, .auth button:focus {
+    background-color: #1976d2;
+    -webkit-box-shadow: 0px 4px 3px 0px rgba(50, 50, 50, 0.2);
+    -moz-box-shadow: 0px 4px 3px 0px rgba(50, 50, 50, 0.2);
+    box-shadow: 0px 4px 3px 0px rgba(50, 50, 50, 0.2);
+    outline: 0;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+}
+.auth button:hover {
+    background-color: #1669bb;
+    -webkit-box-shadow: 0px 5px 3px 0px rgba(50, 50, 50, 0.3);
+    -moz-box-shadow: 0px 5px 3px 0px rgba(50, 50, 50, 0.3);
+    box-shadow: 0px 5px 3px 0px rgba(50, 50, 50, 0.3);
+    cursor: pointer;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+}
+
+form {
+    margin-top: -1em;
+    float: right;
+    display: none;
+}
+
+form label {
+    margin-right: 0.7em;
+}
+
+input {
+    display:block;
+    width:300px;
+    border:none;
+    border-bottom:1px solid #757575;
+    font-family: "Microsoft YaHei", "微软雅黑", Helvetica, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", Helvetica, Tahoma, "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;    
+}
+
+input[value] {
+    padding-left: 1.2em;
+}
+
+.filespan {
+    float: left;
+    margin-top: -1.2em;
+    padding-right: 1em;
+}
+
+#look-selector, .optin {
+    display: none;
+}
+
+.indicator {
+    top: 0px;
+    height: 2px;
+    margin-bottom: -2px;
+    background: #1669bb;
+    width: 0;
+}
+
+.fa-btns input {
+    display: inline;
+    width: auto;
+}
