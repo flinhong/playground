@@ -1,98 +1,3 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Markdown Editor - Frank in Dev.</title>
-    <meta name="description" content="Play around with Semantic UI">
-    <meta name="author" content="Frank Lin">
-    <link rel="stylesheet" href="./assets/editormd/css/editormd.min.css">
-    <link rel="stylesheet" href="./assets/style.css">
-    <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
-    <![endif]-->    
-  </head>
-  <body>
-
-    <header>
-      <div class="ui tiny menu container">
-        <div class="header item notename">Notes Markdown</div>
-        <div class="ui dropdown item">
-          <i class="folder open outline icon"></i>File        
-          <div class="menu">
-            <div id="new-note" class="item"><i class="file text outline icon"></i>New</div>
-            <div id="open-note" class="item">
-              <i class="folder open outline icon"></i>Open
-            </div>
-            <div class="item">
-              <i class="save icon"></i>Save
-            </div>
-            <div class="item">
-              <i class="trash icon"></i>Delete
-            </div>
-          </div>
-        </div>
-
-        <div class="ui dropdown item">
-          <i class="dashboard icon"></i>Themes
-          <div class="menu">
-            <div class="item">
-              <i class="dropdown icon"></i>
-              <span class="text">Toolbar Theme</span>
-              <div id="editormd-theme-select" class="menu">
-              </div>
-            </div>
-            <div class="item">
-              <i class="dropdown icon"></i>
-              <span class="text">Editor Theme</span>
-              <div id="editor-area-theme-select" class="menu">
-              </div>
-            </div>
-            <div class="item">
-              <i class="dropdown icon"></i>
-              <span class="text">Preview Theme</span>
-              <div id="preview-area-theme-select" class="menu">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="file-info" class="ui item">
-            <div class="ui transparent left icon input">
-              <i class="file text outline icon"></i>
-              <input type="text" placeholder="File Name">       
-            </div>
-            <!--<span><i class="save icon"></i></span>-->
-        </div>
-
-        <div id="signin" class="right menu" data-tooltip="Sign in with Google acount" data-position="bottom right">
-          <a class="ui image item label">
-            <i class="google icon"></i>
-            <span>Sign In</span>
-          </a>
-        </div>
-        <div id="signout" class="right menu" data-tooltip="Sign Out" data-position="bottom right">
-          <a class="ui image tiny item label">
-            <span>Sign Out</span>
-          </a>
-        </div>        
-      </div>
-    </header>
-
-    <div class="ui main container">
-            <div id="editormd" class="segment">
-
-<textarea style="display:none;">
-### 主要特性
-
-- 支持“标准”Markdown / CommonMark和Github风格的语法，也可变身为代码编辑器；
-- 支持实时预览、图片（跨域）上传、预格式文本/代码/表格插入、代码折叠、搜索替换、只读模式、自定义样式主题和多语言语法高亮等功能；
-- 支持ToC（Table of Contents）、Emoji表情、Task lists、@链接等Markdown扩展语法；
-- 支持TeX科学公式（基于KaTeX）、流程图 Flowchart 和 时序图 Sequence Diagram;
-- 支持识别和解析HTML标签，并且支持自定义过滤标签解析，具有可靠的安全性和几乎无限的扩展性；
-- 支持 AMD / CMD 模块化加载（支持 Require.js & Sea.js），并且支持自定义扩展插件；
-- 兼容主流的浏览器（IE8+）和Zepto.js，且支持iPad等平板设备；
-- 支持自定义主题样式；
-
 # Editor.md
 
 ![](https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png)
@@ -106,7 +11,7 @@
 [TOC]
 
 # Heading 1
-## Heading 2
+## Heading 2               
 ### Heading 3
 #### Heading 4
 ##### Heading 5
@@ -127,7 +32,7 @@ This is an H2
 -------------
 
 ### 字符效果和横线等
-
+                
 ----
 
 ~~删除线~~ <s>删除线（开启识别HTML标签时）</s>
@@ -148,7 +53,7 @@ The <abbr title="Hyper Text Markup Language">HTML</abbr> specification is mainta
 > 引用文本 Blockquotes
 
 引用的行内混合 Blockquotes
-
+                    
 > 引用：如果想要插入空白换行`即<br />标签`，在插入处先键入两个以上的空格然后回车即可，[普通链接](http://localhost/)。
 
 ### 锚点与链接 Links
@@ -159,11 +64,13 @@ The <abbr title="Hyper Text Markup Language">HTML</abbr> specification is mainta
 
 直接链接：<https://github.com>
 
-[锚点链接][anchor-id]
+[锚点链接][anchor-id] 
 
 [anchor-id]: http://www.this-anchor-link.com/
 
-GFM a-tail link @pandao
+[mailto:test.test@gmail.com](mailto:test.test@gmail.com)
+
+GFM a-tail link @pandao  邮箱地址自动链接 test.test@gmail.com  www@vip.qq.com
 
 > @pandao
 
@@ -175,12 +82,12 @@ GFM a-tail link @pandao
 
 #### 缩进风格
 
-即缩进四个空格，也做为实现类似`<pre>`预格式化文本(Preformatted Text)的功能。
+即缩进四个空格，也做为实现类似 `<pre>` 预格式化文本 ( Preformatted Text ) 的功能。
 
     <?php
         echo "Hello world!";
     ?>
-
+    
 预格式化文本：
 
     | First Header  | Second Header |
@@ -188,15 +95,15 @@ GFM a-tail link @pandao
     | Content Cell  | Content Cell  |
     | Content Cell  | Content Cell  |
 
-#### JS代码
+#### JS代码　
 
 ```javascript
-function test(){
+function test() {
 	console.log("Hello world!");
 }
-
+ 
 (function(){
-    var box = function(){
+    var box = function() {
         return box.fn.init();
     };
 
@@ -207,21 +114,21 @@ function test(){
 			return this;
         },
 
-		add : function(str){
+		add : function(str) {
 			alert("add", str);
 
 			return this;
 		},
 
-		remove : function(str){
+		remove : function(str) {
 			alert("remove", str);
 
 			return this;
 		}
     };
-
+    
     box.fn.init.prototype = box.fn;
-
+    
     window.box =box;
 })();
 
@@ -229,17 +136,24 @@ var testBox = box();
 testBox.add("jQuery").remove("jQuery");
 ```
 
-#### HTML代码 HTML codes
+#### HTML 代码 HTML codes
 
 ```html
 <!DOCTYPE html>
 <html>
     <head>
         <mate charest="utf-8" />
+        <meta name="keywords" content="Editor.md, Markdown, Editor" />
         <title>Hello world!</title>
+        <style type="text/css">
+            body{font-size:14px;color:#444;font-family: "Microsoft Yahei", Tahoma, "Hiragino Sans GB", Arial;background:#fff;}
+            ul{list-style: none;}
+            img{border:none;vertical-align: middle;}
+        </style>
     </head>
     <body>
-        <h1>Hello world!</h1>
+        <h1 class="text-xxl">Hello world!</h1>
+        <p class="text-green">Plain text</p>
     </body>
 </html>
 ```
@@ -258,20 +172,20 @@ Image:
 
 图片加链接 (Image + Link)：
 
-[![](https://pandao.github.io/editor.md/examples/images/7.jpg)](https://pandao.github.io/editor.md/examples/images/7.jpg "李健首张专辑《似水流年》封面")
+[![](https://pandao.github.io/editor.md/examples/images/7.jpg)](https://pandao.github.io/editor.md/images/7.jpg "李健首张专辑《似水流年》封面")
 
 > 图为：李健首张专辑《似水流年》封面
-
+                
 ----
 
 ### 列表 Lists
 
 #### 无序列表（减号）Unordered Lists (-)
-
+                
 - 列表一
 - 列表二
 - 列表三
-
+     
 #### 无序列表（星号）Unordered Lists (*)
 
 * 列表一
@@ -279,7 +193,7 @@ Image:
 * 列表三
 
 #### 无序列表（加号和嵌套）Unordered Lists (+)
-
+                
 + 列表一
 + 列表二
     + 列表二-1
@@ -291,7 +205,7 @@ Image:
     * 列表三
 
 #### 有序列表 Ordered Lists (-)
-
+                
 1. 第一行
 2. 第二行
 3. 第三行
@@ -307,9 +221,9 @@ Image:
 - [ ] GFM task list 4
     - [ ] GFM task list 4-1
     - [ ] GFM task list 4-2
-
+                
 ----
-
+                    
 ### 绘制表格 Tables
 
 | 项目        | 价格   |  数量  |
@@ -317,7 +231,7 @@ Image:
 | 计算机      | $1600   |   5     |
 | 手机        |   $12   |   12   |
 | 管线        |    $1    |  234  |
-
+                    
 First Header  | Second Header
 ------------- | -------------
 Content Cell  | Content Cell
@@ -344,17 +258,19 @@ Content Cell  | Content Cell
 | Computer  | $1600 |
 | Phone     |   $12 |
 | Pipe      |    $1 |
-
+                
 ----
 
 #### 特殊符号 HTML Entities Codes
 
-© &  ¨ ™ ¡ £
-& < > ¥ € ® ± ¶ § ¦ ¯ « ·
+&copy; &  &uml; &trade; &iexcl; &pound;
+&amp; &lt; &gt; &yen; &euro; &reg; &plusmn; &para; &sect; &brvbar; &macr; &laquo; &middot; 
 
-X² Y³ ¾ ¼  ×  ÷   »
+X&sup2; Y&sup3; &frac34; &frac14;  &times;  &divide;   &raquo;
 
-18ºC  "  '
+18&ordm;C  &quot;  &apos;
+
+[========]
 
 ### Emoji表情 :smiley:
 
@@ -369,19 +285,23 @@ X² Y³ ¾ ¼  ×  ÷   »
 - [ ] [ ]this is an incomplete item :fa-star: :fa-gear:;
     - [ ] :smiley: this is an incomplete item [test link](#) :fa-star: :fa-gear:;
     - [ ] :smiley: this is  :fa-star: :fa-gear: an incomplete item [test link](#);
-
+ 
 #### 反斜杠 Escape
 
 \*literal asterisks\*
 
+[========]
+            
 ### 科学公式 TeX(KaTeX)
 
 $$E=mc^2$$
 
 行内的公式$$E=mc^2$$行内的公式，行内的$$E=mc^2$$公式。
 
-$$\(\sqrt{3x-1}+(1+x)^2\)$$
+$$x > y$$
 
+$$\(\sqrt{3x-1}+(1+x)^2\)$$
+                    
 $$\sin(\alpha)^{\theta}=\sum_{i=0}^{n}(x^i + \cos(f))$$
 
 多行公式：
@@ -412,6 +332,12 @@ f(x) = \int_{-\infty}^\infty
     \,d\xi
 ```
 
+### 分页符 Page break
+
+> Print Test: Ctrl + P
+
+[========]
+
 ### 绘制流程图 Flowchart
 
 ```flow
@@ -425,8 +351,10 @@ cond(yes)->e
 cond(no)->op
 ```
 
+[========]
+                    
 ### 绘制序列图 Sequence Diagram
-
+                    
 ```seq
 Andrew->China: Says Hello 
 Note right of China: China thinks\nabout it 
@@ -435,44 +363,3 @@ Andrew->>China: I am good thanks!
 ```
 
 ### End
-</textarea>
-
-            </div>
-
-    </div>
-
-    <div id="open-modal" class="ui small modal">
-      <i class="close icon"></i>
-      <div class="header">
-        Notebooks
-      </div>
-      <div class="image content">
-        <!--<div class="ui medium image">
-          <img src="./assets/avatar.jpg">
-        </div>-->
-        <div class="description">
-          <p>
-            <ol id="note-list"></ol>
-          </p>
-        </div>
-      </div>
-      <div class="actions">
-        <div class="ui black deny button">
-          Cancel
-        </div>
-        <div class="ui positive right labeled icon button">
-          OK
-          <i class="checkmark icon"></i>
-        </div>
-      </div>
-    </div>
-
-
-    <script src="./assets/jquery-3.2.1.min.js"></script>
-    <script src="./assets/editormd/editormd.js"></script>
-    <script src="./assets/editormd/languages/en.js"></script>
-    <script src="./assets/semantic.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
-    <script src="./assets/script.js"></script>
-  </body>
-</html>
