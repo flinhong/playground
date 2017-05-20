@@ -111,16 +111,19 @@ $(document)
         $("#open-modal").modal('setting', 'transition', 'vertical flip').modal('show');
         $("#note-list .item a").each(function() {
             $(this).on("click", function() {
+                $("#open-modal .dimmer").addClass("active");
                 var fileName = $(this).text();
                 var fileNameExt = fileName + ".md";
                 var notebook = $(this).closest(".tab").attr("data-tab");
                 var notefileRef = storageRef.child(userID).child(notebook).child(fileNameExt);
-                $("#open-modal").modal("toggle");
+                // $("#open-modal").modal("toggle");
                 notefileRef.getDownloadURL().then(function(url) {
-                    $.get(url, function(data){
+                    var jQxhr = $.get(url, function(data){
                         mainEditor.cm.setValue(data);
                         $("#file-info input").val(fileName);
                         $("#notebook-info input").val(notebook);
+                        $("#open-modal .dimmer").removeClass("active");
+                        $("#open-modal").modal('hide');
                     });
                 }).catch(function(error) {
                 // Handle any errors
@@ -167,6 +170,12 @@ $(document)
                 updateAt: timeStamp
             });
             var uploadTask = notefileRef.put(file);
+            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function(snapshot) {
+                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                $('.indicator').animate({width: progress +'%'}, 500);
+                $('.indicator').animate({width:0}, 100);
+            });            
         };
 
         function updateFile() {
