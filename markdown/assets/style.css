@@ -34,7 +34,7 @@ header {
   font-weight: bold;
 }
 
-#signout, #file-info {
+#signout, #notebook-info {
   display: none;
 }
 
@@ -55,10 +55,30 @@ header {
   z-index: 1000;
 }
 
-#file-info span {
+#file-info span, #notebook-list .item {
   cursor: pointer;
+}
+
+#file-info {
+  width: 350px;
 }
 
 .markdown-body {
   font-family: 'Lato',"Helvetica Neue","Droid Sans","Microsoft YaHei",Helvetica,"Meiryo UI","Malgun Gothic","Segoe UI","Trebuchet MS",Monaco,monospace,Tahoma,STXihei,"华文细黑",STHeiti,"wenquanyi micro hei",FreeSans,Arimo,Arial,SimSun,"宋体",Heiti,"黑体",sans-serif;
+}
+
+.indicator {
+  top: 0px;
+  height: 2px;
+  margin-bottom: -2px;
+  background: #1669bb;
+  width: 0;
+}
+
+#notebook-list .fa {
+  padding-right: 1em;
+}
+
+.editormd-html-preview blockquote, .editormd-preview-container blockquote {
+  font-style: normal;
 }

@@ -12,10 +12,10 @@
     <![endif]-->    
   </head>
   <body>
-
+    <div class="indicator"></div>
     <header>
       <div class="ui tiny menu container">
-        <div class="header item notename">Notes Markdown</div>
+        <div class="header item notename">Frank in Dev.</div>
         <div class="ui dropdown item">
           <i class="folder open outline icon"></i>File        
           <div class="menu">
@@ -23,12 +23,12 @@
             <div id="open-note" class="item">
               <i class="folder open outline icon"></i>Open
             </div>
-            <div class="item">
+            <div id="save-note" class="item">
               <i class="save icon"></i>Save
             </div>
-            <div class="item">
+            <!--<div id="delete-note" class="item">
               <i class="trash icon"></i>Delete
-            </div>
+            </div>-->
           </div>
         </div>
 
@@ -59,9 +59,15 @@
         <div id="file-info" class="ui item">
             <div class="ui transparent left icon input">
               <i class="file text outline icon"></i>
-              <input type="text" placeholder="File Name">       
+              <input type="text" placeholder="Note Name">       
             </div>
-            <!--<span><i class="save icon"></i></span>-->
+        </div>
+
+        <div id="notebook-info" class="ui item">
+            <div class="ui transparent left icon input">
+              <i class="folder outline icon"></i>
+              <input type="text" placeholder="Notebook Name">       
+            </div>
         </div>
 
         <div id="signin" class="right menu" data-tooltip="Sign in with Google acount" data-position="bottom right">
@@ -81,7 +87,7 @@
     <div class="ui main container">
             <div id="editormd" class="segment">
 
-<textarea style="display:none;">
+<textarea id="noteContent" style="display:none;">
 ### 主要特性
 
 - 支持“标准”Markdown / CommonMark和Github风格的语法，也可变身为代码编辑器；
@@ -92,12 +98,6 @@
 - 支持 AMD / CMD 模块化加载（支持 Require.js & Sea.js），并且支持自定义扩展插件；
 - 兼容主流的浏览器（IE8+）和Zepto.js，且支持iPad等平板设备；
 - 支持自定义主题样式；
-
-# Editor.md
-
-![](https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png)
-
-![](https://img.shields.io/github/stars/pandao/editor.md.svg) ![](https://img.shields.io/github/forks/pandao/editor.md.svg) ![](https://img.shields.io/github/tag/pandao/editor.md.svg) ![](https://img.shields.io/github/release/pandao/editor.md.svg) ![](https://img.shields.io/github/issues/pandao/editor.md.svg) ![](https://img.shields.io/bower/v/editor.md.svg)
 
 **目录 (Table of Contents)**
 
@@ -441,32 +441,87 @@ Andrew->>China: I am good thanks!
 
     </div>
 
-    <div id="open-modal" class="ui small modal">
+    <div id="open-modal" class="ui small long modal">
       <i class="close icon"></i>
       <div class="header">
         Notebooks
       </div>
       <div class="image content">
-        <!--<div class="ui medium image">
-          <img src="./assets/avatar.jpg">
-        </div>-->
-        <div class="description">
-          <p>
-            <ol id="note-list"></ol>
-          </p>
+        <div  class="description">
+          <div class="ui grid">
+            <div class="six wide column">
+              <div id="notebook-list" class="ui vertical fluid tabular menu">
+                <div class="item" data-tab="tab-test">
+                  <i class="fa fa-lg fa-folder-o"></i>Tab Name Test
+                </div>
+              </div>
+            </div>
+            <div id="note-list" class="ten wide stretched column">
+              <div class="ui tab" data-tab="tab-test">
+                <div class="ui relaxed divided list">
+                  <div class="item">
+                    <i class="large github middle aligned icon"></i>
+                    <div class="content">
+                      <a class="header">Semantic-Org/Semantic-UI</a>
+                      <div class="description">Updated 10 mins ago</div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <i class="large github middle aligned icon"></i>
+                    <div class="content">
+                      <a class="header">Semantic-Org/Semantic-UI-Docs</a>
+                      <div class="description">Updated 22 mins ago</div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <i class="large github middle aligned icon"></i>
+                    <div class="content">
+                      <a class="header">Semantic-Org/Semantic-UI-Meteor</a>
+                      <div class="description">Updated 34 mins ago</div>
+                    </div>
+                  </div>
+                </div>
+              </div>                       
+            </div>
+          </div>
         </div>
       </div>
       <div class="actions">
-        <div class="ui black deny button">
-          Cancel
+        <div class="ui positive right labeled icon button">
+          Close
+          <i class="remove icon"></i>
         </div>
+      </div>
+    </div>
+
+    <div id="new-modal" class="ui small modal">
+      <i class="close icon"></i>
+      <div class="header">
+        New Note
+      </div>
+      <div class="image content">
+        <div class="description">
+          <form class="ui form">
+            <div class="fields">
+              <div class="ten wide required field">
+                <label>Note Name</label>
+                <input type="text" name="note name" placeholder="Note name">
+              </div>
+              <div class="six wide field">
+                <label>Notebook</label>
+                <input type="text" name="notebook" placeholder="Notebook, 'Default' if not specified">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="actions">
         <div class="ui positive right labeled icon button">
           OK
           <i class="checkmark icon"></i>
         </div>
       </div>
-    </div>
-
+    </div>  
 
     <script src="./assets/jquery-3.2.1.min.js"></script>
     <script src="./assets/editormd/editormd.js"></script>
