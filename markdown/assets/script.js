@@ -160,6 +160,13 @@ $(document)
         var timeStamp = new Date().toLocaleString();
         var file = new Blob([noteContent], { type: "text/plain" });
         var fileName = $("#file-info input").val();
+
+        if (fileName) {
+
+        } else {
+            fileName = prompt("Please enter a new note name", "Note Name:");
+        }
+
         var fileNameExt = $("#file-info input").val() + ".md";
         var notebook = $("#notebook-info .text").text();
         var notedataRef;
