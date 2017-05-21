@@ -226,7 +226,7 @@ $(document)
         storageRef.child(userID).child(notebook).child(noteNameExt).delete();
         updateNoteList(databaseRef.child(userID));
         mainEditor.cm.setValue("");
-    });  
+    });
 
     $("#open-note").click(function() {
         $("#open-modal").modal('setting', 'transition', 'vertical flip').modal('show');
