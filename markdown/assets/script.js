@@ -156,6 +156,83 @@ $(document)
         });
     }; 
 
+    $(window).keypress(function(event) {
+        if (!(event.which == 115 && event.ctrlKey) && !(event.which == 19)) return true;
+
+        $("#uploading").addClass("active");
+        noteContent = $("#noteContent").text();
+        var timeStamp = new Date().toLocaleString();
+        var file = new Blob([noteContent], { type: "text/plain" });
+        var fileName = $("#file-info input").val();
+
+        if (fileName) {
+
+        } else {
+            fileName = prompt("Please enter a new note name", "Note Name:");
+        }
+
+        var fileNameExt = $("#file-info input").val() + ".md";
+        var notebook = $("#notebook-info .text").text();
+        var notedataRef;
+        var notefileRef;
+
+        if (notebook) {
+  
+        } else {
+            notebook = "Default Notebook";
+        }
+
+        notedataRef = databaseRef.child(userID).child(notebook).child(fileName);
+        notefileRef = storageRef.child(userID).child(notebook).child(fileNameExt);
+
+        notedataRef.once('value', function(snapshot) {
+            var exists = (snapshot.val() !== null);
+            if (exists) {
+                updateFile();
+            } else {
+                uploadFile();
+            }
+            var notesdataRef = databaseRef.child(userID);
+            updateNoteList(notesdataRef);
+        });
+
+        function uploadFile() {
+            notedataRef.set({
+                filename: fileName,
+                updateAt: timeStamp
+            });
+            var uploadTask = notefileRef.put(file);
+
+            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function(snapshot) {
+                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                $('.indicator').animate({width: progress +'%'}, 400);
+            }, function(error) {
+
+            }, function() {
+                // Upload completed successfully, now we can get the download URL
+                // var downloadURL = uploadTask.snapshot.downloadURL;
+                $('.indicator').animate({width:0}, 1);
+                $("#uploading").removeClass("active");
+                $("#delete-note").removeClass("disabled");
+                $("#delete-note").click(function() {
+                    deleteNote(notebook, fileName);
+                });                         
+            });                    
+        };
+
+        function updateFile() {
+            notefileRef.delete().then(function() {
+                uploadFile();
+            }).catch(function(error) {
+            // Uh-oh, an error occurred!
+            });
+        }
+
+        event.preventDefault();
+        return false;
+    });
+
     $("#save-note").click(function() {
         $("#uploading").addClass("active");
         noteContent = $("#noteContent").text();
