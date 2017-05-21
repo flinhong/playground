@@ -255,7 +255,7 @@ $(document)
 
     $("#save-note").click(function() {
         $("#uploading").addClass("active");
-        noteContent = $("#noteContent").text();
+        var noteContent = $("#noteContent").text();
         var timeStamp = new Date().toLocaleString();
         var file = new Blob([noteContent], { type: "text/plain" });
         var fileName = $("#file-info input").val();
