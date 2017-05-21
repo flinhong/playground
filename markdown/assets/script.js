@@ -18,9 +18,9 @@ $(document)
             $("#file-info input").val(notename);
         }
         if (notebook) {
-            $("#notebook-info input").val(notebook);
+            $("#notebook-info .text").text(notebook);
         } else {
-            $("#notebook-info input").val("Default");
+            $("#notebook-info .text").text("Default Notebook");
         }
         mainEditor.cm.setValue("");
     });    
@@ -62,19 +62,22 @@ $(document)
             $("#signout").toggle();
             $("#notebook-info").toggle();
             var notesdataRef = databaseRef.child(userID);
-            updateNoteList(notesdataRef);                         
+            updateNoteList(notesdataRef);                    
         }
     });
 
     function updateNoteList(notesdataRef) {
         $("#notebook-list").empty();
         $("#note-list").empty();
+        $("#notebook-info .scrolling").empty();
         notesdataRef.once("value").then(function(snapshot) {
             var notebooks = snapshot.val();
 
             $.each(notebooks, function(notebook, notesData) {
                 var notebookhtml = '<div class="item" data-tab="' + notebook + '"><i class="fa fa-lg fa-folder-o"></i>' + notebook + '</div>';
+                var notebookhtml1 = '<div class="item">' + notebook + '</div>';
                 $("#notebook-list").append(notebookhtml);
+                $("#notebook-info .scrolling").append(notebookhtml1);
 
                 var notetab = '<div class="ui tab" data-tab="' + notebook + '">';
                 notetab += '<div class="ui relaxed divided list">';
@@ -102,6 +105,8 @@ $(document)
             $("#signout").toggle();
             $("#file-info input").val("");
             $("#notebook-info").toggle();
+            $("#notebook-list").empty();
+            $("#note-list").empty();            
         }, function(error) {
         // An error happened.
         });
@@ -112,56 +117,72 @@ $(document)
         $("#note-list .item a").each(function() {
             $(this).on("click", function() {
                 $("#open-modal .dimmer").addClass("active");
-                var fileName = $(this).text();
-                var fileNameExt = fileName + ".md";
+                var noteName = $(this).text();
+                var noteNameExt = noteName + ".md";
                 var notebook = $(this).closest(".tab").attr("data-tab");
-                var notefileRef = storageRef.child(userID).child(notebook).child(fileNameExt);
-                // $("#open-modal").modal("toggle");
+                var notefileRef = storageRef.child(userID).child(notebook).child(noteNameExt);
                 notefileRef.getDownloadURL().then(function(url) {
                     var jQxhr = $.get(url, function(data){
                         mainEditor.cm.setValue(data);
-                        $("#file-info input").val(fileName);
-                        $("#notebook-info input").val(notebook);
+                        $("#file-info input").val(noteName);
+                        $("#notebook-info .text").text(notebook);
                         $("#open-modal .dimmer").removeClass("active");
                         $("#open-modal").modal('hide');
+                        $("#delete-note").removeClass("disabled");
+                        $("#delete-note").click(function() {
+                            deleteNote(notebook, noteName);
+                        });                      
                     });
                 }).catch(function(error) {
                 // Handle any errors
                 });
-
             });
         });
     }); 
 
+    function deleteNote(notebook, notename) {
+        var notedataRef = databaseRef.child(userID).child(notebook).child(notename);
+        notedataRef.remove();
+        var notenameExt = notename + ".md";
+        var notefileRef = storageRef.child(userID).child(notebook).child(notenameExt);
+        notefileRef.delete().then(function() {
+            var notesdataRef = databaseRef.child(userID);
+            updateNoteList(notesdataRef);
+            mainEditor.cm.setValue("");
+        }).catch(function(error) {
+        // Uh-oh, an error occurred!
+        });
+    }; 
+
     $("#save-note").click(function() {
+        $("#uploading").addClass("active");
         noteContent = $("#noteContent").text();
         var timeStamp = new Date().toLocaleString();
         var file = new Blob([noteContent], { type: "text/plain" });
         var fileName = $("#file-info input").val();
         var fileNameExt = $("#file-info input").val() + ".md";
-        var notebook = $("#notebook-info input").val();
+        var notebook = $("#notebook-info .text").text();
         var notedataRef;
         var notefileRef;
+
         if (notebook) {
-            notedataRef = databaseRef.child(userID).child(notebook).child(fileName);
-            notefileRef = storageRef.child(userID).child(notebook).child(fileNameExt);
+  
         } else {
-            notedataRef = databaseRef.child(userID).child("Default").child(fileName);
-            notefileRef = storageRef.child(userID).child("Default").child(fileNameExt);
+            notebook = "Default Notebook";
         }
-        
+
+        notedataRef = databaseRef.child(userID).child(notebook).child(fileName);
+        notefileRef = storageRef.child(userID).child(notebook).child(fileNameExt);
+
         notedataRef.once('value', function(snapshot) {
             var exists = (snapshot.val() !== null);
             if (exists) {
                 updateFile();
             } else {
                 uploadFile();
-
-                var innerhtml = '<div class="item"><i class="large file text outline middle aligned icon"></i><div class="content">';
-                innerhtml += '<a class="header">' + fileName + '</a>';
-                innerhtml += '<div class="description">Last update: ' + timeStamp + '</div></div></div>';
-                $('#note-list div[data-tab="'+notebook+'"] .list').append(innerhtml);
             }
+            var notesdataRef = databaseRef.child(userID);
+            updateNoteList(notesdataRef);
         });
 
         function uploadFile() {
@@ -170,12 +191,23 @@ $(document)
                 updateAt: timeStamp
             });
             var uploadTask = notefileRef.put(file);
+
             uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function(snapshot) {
                 // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
                 var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                $('.indicator').animate({width: progress +'%'}, 500);
-                $('.indicator').animate({width:0}, 100);
-            });            
+                $('.indicator').animate({width: progress +'%'}, 400);
+            }, function(error) {
+
+            }, function() {
+                // Upload completed successfully, now we can get the download URL
+                // var downloadURL = uploadTask.snapshot.downloadURL;
+                $('.indicator').animate({width:0}, 1);
+                $("#uploading").removeClass("active");
+                $("#delete-note").removeClass("disabled");
+                $("#delete-note").click(function() {
+                    deleteNote(notebook, fileName);
+                });                         
+            });                    
         };
 
         function updateFile() {

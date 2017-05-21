@@ -11,11 +11,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
     <![endif]-->    
   </head>
-  <body>
+  <body class="ui">
     <div class="indicator"></div>
+    <div id="uploading" class="ui dimmer">
+      <div class="ui indeterminate text loader">Uploading Note</div>
+    </div>
+
     <header>
       <div class="ui tiny menu container">
-        <div class="header item notename">Frank in Dev.</div>
+        <div class="header item notename"><a href="https://flinhong.com" target="_blank">Frank in Dev.</a></div>
         <div class="ui dropdown item">
           <i class="folder open outline icon"></i>File        
           <div class="menu">
@@ -26,9 +30,9 @@
             <div id="save-note" class="item">
               <i class="save icon"></i>Save
             </div>
-            <!--<div id="delete-note" class="item">
+            <div id="delete-note" class="disabled item">
               <i class="trash icon"></i>Delete
-            </div>-->
+            </div>            
           </div>
         </div>
 
@@ -64,10 +68,22 @@
         </div>
 
         <div id="notebook-info" class="ui item">
-            <div class="ui transparent left icon input">
+            <!--<div class="ui transparent left icon input">
               <i class="folder outline icon"></i>
               <input type="text" placeholder="Notebook Name">       
-            </div>
+            </div>-->
+            <div class="ui dropdown">
+              <i class="folder outline icon"></i>
+              <span class="text">Default Notebook</span>
+              <div class="menu">
+                <div class="ui icon search input">
+                  <i class="search icon"></i>
+                  <input type="text" placeholder="Search...">
+                </div>
+                <div class="scrolling menu">
+                </div>
+              </div>
+            </div>          
         </div>
 
         <div id="signin" class="right menu" data-tooltip="Sign in with Google acount" data-position="bottom right">
@@ -86,7 +102,6 @@
 
     <div class="ui main container">
             <div id="editormd" class="segment">
-
 <textarea id="noteContent" style="display:none;">
 [TOCM]
 
@@ -491,8 +506,8 @@ Andrew->>China: I am good thanks!
                 <input type="text" name="note name" placeholder="Note name">
               </div>
               <div class="six wide field">
-                <label>Notebook</label>
-                <input type="text" name="notebook" placeholder="Notebook, 'Default' if not specified">
+                <label>Notebook Name</label>
+                <input type="text" name="notebook" placeholder="'Default Notebook' if not specified">
               </div>
             </div>
           </form>
