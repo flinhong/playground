@@ -60,6 +60,8 @@ $(document)
             $("#signout a").append('<i class="sign out icon"></i>');
             $("#signin").toggle();
             $("#signout").toggle();
+            $("#open-note").removeClass("disabled");
+            $("#save-note").removeClass("disabled");
             $("#notebook-info").toggle();
             var notesdataRef = databaseRef.child(userID);
             updateNoteList(notesdataRef);                    
