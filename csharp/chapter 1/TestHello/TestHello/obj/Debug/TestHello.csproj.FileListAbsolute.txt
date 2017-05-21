@@ -1,0 +1,6 @@
+D:\Documents\Git Repositories\GitHub\playground\csharp\chapter 1\TestHello\TestHello\bin\Debug\TestHello.exe.config
+D:\Documents\Git Repositories\GitHub\playground\csharp\chapter 1\TestHello\TestHello\bin\Debug\TestHello.exe
+D:\Documents\Git Repositories\GitHub\playground\csharp\chapter 1\TestHello\TestHello\bin\Debug\TestHello.pdb
+D:\Documents\Git Repositories\GitHub\playground\csharp\chapter 1\TestHello\TestHello\obj\Debug\TestHello.csprojResolveAssemblyReference.cache
+D:\Documents\Git Repositories\GitHub\playground\csharp\chapter 1\TestHello\TestHello\obj\Debug\TestHello.exe
+D:\Documents\Git Repositories\GitHub\playground\csharp\chapter 1\TestHello\TestHello\obj\Debug\TestHello.pdb
