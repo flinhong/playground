@@ -104,7 +104,7 @@
 
 		})();
 
-		$.getJSON("http://freegeoip.net/json/",
+		$.getJSON("https://freegeoip.net/json/",
 			function (data) {
 				var html = "";
 				for (var prop in data) {
