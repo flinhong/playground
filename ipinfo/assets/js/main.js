@@ -109,7 +109,6 @@
 				var html = "";
 				for (var prop in data) {
 					html += '<li>' + `${prop} = ${data[prop]}`;
-					console.log(html);
 				}
 				$("#ip-info").html(html);
 			}
