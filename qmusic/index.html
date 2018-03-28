@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>QQ 音乐歌词搜索</title>
+  </head>
+  <body>
+    <!-- As a heading -->
+    <nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand mb-0 h1">QQ 音乐歌词搜索</span>
+    </nav>
+
+    <div class="container mt-3">
+      <form id="search">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputTitle">歌名</label>
+            <input type="text" class="form-control" id="inputTitle" placeholder="歌名">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputArtist">歌手</label>
+            <input type="text" class="form-control" id="inputArtist" placeholder="歌手（选填）">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-6">
+              <button type="submit" class="btn btn-primary">搜索</button>
+          </div>
+          <div class="col-md-6">
+              <div id="audio" class="d-none"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="container mt-3">
+      <div class="row">
+        <div id="music-info" class="col-md-6"></div>
+        <div class="col-md-6 d-none" id="card">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+              <p class="card-text" id="lyric"></p>
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
