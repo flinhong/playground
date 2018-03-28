@@ -114,7 +114,7 @@ $( document ).ready(function() {
         var html = `<pre>${lyric}</pre>`
         $('#lyric').html(html);
       } else {
-        $('#lyric').html('啥也没找到');
+        $('#lyric').html('没找到歌词');
       }
     })
     .fail(function() {
