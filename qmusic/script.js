@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-  // getId();
+
   $( "#search" ).on( "submit", function( event ) {
     event.preventDefault();
     var title = $('#inputTitle').val();
@@ -9,27 +9,6 @@ $( document ).ready(function() {
     // console.log(w)
     queryData(keywords);
   });
-
-  // test ids
-  function getId() {
-    var urlString = `https://c.y.qq.com/base/fcgi-bin/fcg_musicexpress.fcg`;
-
-    $.ajax({
-      type: "get",
-      async: false,
-      url: urlString,
-      dataType: "jsonp",
-      jsonp: "callback",
-      jsonpCallback: "callback",
-      scriptCharset: 'utf-8',
-      success: function(data) {
-        console.log(data);
-      },
-      error: function() {
-        alert('fail')
-      }
-    });
-  }
 
   // get music infomation
   function queryData(keywords) {
@@ -50,7 +29,7 @@ $( document ).ready(function() {
           $(this).click(function() {
             var id = $(this).attr('id');
             var mid = $(this).attr('class');
-            $('#lyric').text('加载中...')
+            $('#lyric').text('歌词加载中...')
             queryLrc(id);
             var name = $(this).find('td')[0].innerHTML;
             var singer = $(this).find('td')[1].innerHTML;
@@ -104,6 +83,8 @@ $( document ).ready(function() {
     // console.log(urlString);
     var audio = `<audio src="${urlString}" controls></audio>`
     $('#audio').html(audio);
+    var wid = $('#music-info').width();
+    $('#audio audio').css('width', wid);
     $('#audio').removeClass('d-none');
   }
 
