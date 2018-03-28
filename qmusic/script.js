@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-  
+  // getId();
   $( "#search" ).on( "submit", function( event ) {
     event.preventDefault();
     var title = $('#inputTitle').val();
@@ -9,6 +9,27 @@ $( document ).ready(function() {
     // console.log(w)
     queryData(keywords);
   });
+
+  // test ids
+  function getId() {
+    var urlString = `https://c.y.qq.com/base/fcgi-bin/fcg_musicexpress.fcg`;
+
+    $.ajax({
+      type: "get",
+      async: false,
+      url: urlString,
+      dataType: "jsonp",
+      jsonp: "callback",
+      jsonpCallback: "callback",
+      scriptCharset: 'utf-8',
+      success: function(data) {
+        console.log(data);
+      },
+      error: function() {
+        alert('fail')
+      }
+    });
+  }
 
   // get music infomation
   function queryData(keywords) {
@@ -46,36 +67,44 @@ $( document ).ready(function() {
     });
   }
 
+
+  // get music path
   function queryMusic(mid) {
-    var urlString = `https://c.y.qq.com/base/fcgi-bin/fcg_music_express_mobile3.fcg?g_tk=1278911659&hostUin=0&format=jsonp&callback=callback&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0&cid=205361747&uin=0&songmid=${mid}&filename=C400${mid}.m4a&guid=3655047200`;
+    // var t = (new Date).getUTCMilliseconds();
+    // var guid = Math.round(2147483647 * Math.random()) * t % 1e10;
+    // document.cookie = "pgv_pvid=" + guid + "; Expires=Sun, 18 Jan 2038 00:00:00 GMT; PATH=/; DOMAIN=qq.com;";
+    // var urlString = `https://c.y.qq.com/base/fcgi-bin/fcg_music_express_mobile3.fcg?g_tk=1278911659&hostUin=0&format=jsonp&callback=callback&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0&cid=205361747&uin=0&songmid=${mid}&filename=C400${mid}.m4a&guid=${guid}`;
 
-    $.ajax({
-      type: "get",
-      async: false,
-      url: urlString,
-      dataType: "jsonp",
-      jsonp: "callback",
-      jsonpCallback: "callback",
-      scriptCharset: 'utf-8',
-      success: function(data) {
-        // console.log(data);
-        var vkey = data.data.items[0].vkey;
-        var filename = data.data.items[0].filename;
-        var musicpath = `http://dl.stream.qqmusic.qq.com/${filename}?vkey=${vkey}&guid=3655047200&fromtag=66`
-        // console.log(musicpath);
-        var music = `<audio src="${musicpath}" controls></audio>`
-        $('#audio').html(music);
-        $('#audio').removeClass('d-none')
-      },
-      error: function() {
-        alert('fail')
-      }
-    });
+    // $.ajax({
+    //   type: "get",
+    //   async: false,
+    //   url: urlString,
+    //   dataType: "jsonp",
+    //   jsonp: "callback",
+    //   jsonpCallback: "callback",
+    //   scriptCharset: 'utf-8',
+    //   success: function(data) {
+    //     console.log(data);
+    //     var vkey = data.data.items[0].vkey;
+    //     var filename = data.data.items[0].filename;
+    //     var musicpath = `http://dl.stream.qqmusic.qq.com/${filename}?vkey=${vkey}&guid=${guid}&fromtag=66`
+    //     // console.log(musicpath);
+    //     if (vkey) {
+    //       var music = `<audio src="${musicpath}" controls></audio>`
+    //       $('#audio').html(music);
+    //       $('#audio').removeClass('d-none')
+    //     }
+    //   },
+    //   error: function() {
+    //     alert('fail')
+    //   }
+    // });
 
-    // var urlString = `https://ws.stream.qqmusic.qq.com/${mid}.m4a?fromtag=46`;
+    var urlString = `http://isure.stream.qqmusic.qq.com/C100${mid}.m4a?fromtag=32`;
     // console.log(urlString);
-    // var audio = `<audio src="${urlString}" controls></audio>`
-    // $('#music-info').append(audio);
+    var audio = `<audio src="${urlString}" controls></audio>`
+    $('#audio').html(audio);
+    $('#audio').removeClass('d-none');
   }
 
   function queryLrc(id) {
