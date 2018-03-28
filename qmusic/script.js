@@ -100,7 +100,7 @@ $( document ).ready(function() {
     //   }
     // });
 
-    var urlString = `http://isure.stream.qqmusic.qq.com/C100${mid}.m4a?fromtag=32`;
+    var urlString = `http://isure.stream.qqmusic.qq.com/C100${mid}.m4a?fromtag=66`;
     // console.log(urlString);
     var audio = `<audio src="${urlString}" controls></audio>`
     $('#audio').html(audio);
