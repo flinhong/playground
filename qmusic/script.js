@@ -104,24 +104,36 @@ $( document ).ready(function() {
 
     // console.log(yql)
     // console.log(yql);
-    $.getJSON(myql, function () {
-    })
-    .done(function(data) {
-      console.log(data);
-      var xmlDoc = $.parseXML( data.results[0] );
-      if (xmlDoc) {
-        var $xml = $(xmlDoc);
-        var lyric = $xml.find('lyric').text();
-        // console.log(lyric);
-        var html = `<pre>${lyric}</pre>`
-        $('#lyric').html(html);
-      } else {
-        $('#lyric').html('没找到歌词');
+    // $.getJSON(myql, function () {
+    // })
+    // .done(function(data) {
+    //   console.log(data);
+    //   var xmlDoc = $.parseXML( data.results[0] );
+    //   if (xmlDoc) {
+    //     var $xml = $(xmlDoc);
+    //     var lyric = $xml.find('lyric').text();
+    //     // console.log(lyric);
+    //     var html = `<pre>${lyric}</pre>`
+    //     $('#lyric').html(html);
+    //   } else {
+    //     $('#lyric').html('没找到歌词');
+    //   }
+    // })
+    // .fail(function() {
+    //   $('#lyric').html('出错了');
+    // })
+    $.ajax({
+      type: "GET",
+      url: myql,
+      dataType: "xml",
+      success: function(data) {
+        console.log(data);
+      },
+      error: function() {
+        $('#lyric').html('出错了');
       }
-    })
-    .fail(function() {
-      $('#lyric').html('出错了');
-    })
+    });
+
   }
 
   // $.getJSON( "./data.json", function( data ) {
