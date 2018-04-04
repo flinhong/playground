@@ -122,16 +122,13 @@ $( document ).ready(function() {
     // .fail(function() {
     //   $('#lyric').html('出错了');
     // })
-    $.ajax({
-      type: "GET",
-      url: myql,
-      dataType: "xml",
-      success: function(data) {
-        console.log(data);
-      },
-      error: function() {
-        $('#lyric').html('出错了');
-      }
+    $.get( myql, function() {
+    })
+    .done(function(data) {
+      console.log(data);
+    })
+    .fail(function(){
+      $('#lyric').html('出错了');
     });
 
   }
