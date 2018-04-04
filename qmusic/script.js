@@ -100,7 +100,7 @@ $( document ).ready(function() {
     // yql += '&charset=gb2312&format=xml&callback=?';
     // yql = encodeURI(yql);
 
-    var myql = 'http://files.flinhong.com/miniproxy/index.php?' + urlString;
+    // var myql = 'http://files.flinhong.com/miniproxy/index.php?' + urlString;
 
     // console.log(yql)
     // console.log(yql);
@@ -122,15 +122,11 @@ $( document ).ready(function() {
     // .fail(function() {
     //   $('#lyric').html('出错了');
     // })
-    $.get( myql, function() {
+
+    $.getJSON("http://files.flinhong.com/xml2json.php?callback=?", {feed: urlString}, function(data) {
+      console.log(data);
     })
-    .done(function(data) {
-      var xmlDoc = $.parseXML( data );
-      console.log(xmlDoc);
-    })
-    .fail(function(){
-      $('#lyric').html('出错了');
-    });
+
 
   }
 
