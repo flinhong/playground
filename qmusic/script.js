@@ -125,7 +125,8 @@ $( document ).ready(function() {
     $.get( myql, function() {
     })
     .done(function(data) {
-      console.log(data);
+      var xmlDoc = $.parseXML( data );
+      console.log(xmlDoc);
     })
     .fail(function(){
       $('#lyric').html('出错了');
