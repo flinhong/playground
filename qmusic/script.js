@@ -95,17 +95,19 @@ $( document ).ready(function() {
     // console.log(urlString);
 
     // var yql = 'https://query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent('select * from xml where url="' + urlString + '"') + '&format=xml&callback=?';
-    var yql = 'https://query.yahooapis.com/v1/public/yql?q=';
-    yql += 'select * from xml where url="' + urlString +'"';
-    yql += '&charset=gb2312&format=xml&callback=?';
-    yql = encodeURI(yql);
+    // var yql = 'https://query.yahooapis.com/v1/public/yql?q=';
+    // yql += 'select * from xml where url="' + urlString +'"';
+    // yql += '&charset=gb2312&format=xml&callback=?';
+    // yql = encodeURI(yql);
+
+    var myql = 'http://files.flinhong.com/miniproxy/index.php?' + urlString;
 
     // console.log(yql)
     // console.log(yql);
-    $.getJSON(yql, function () {
+    $.getJSON(myql, function () {
     })
     .done(function(data) {
-      // console.log(data);
+      console.log(data);
       var xmlDoc = $.parseXML( data.results[0] );
       if (xmlDoc) {
         var $xml = $(xmlDoc);
