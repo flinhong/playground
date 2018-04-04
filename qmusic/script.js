@@ -100,7 +100,7 @@ $( document ).ready(function() {
     // yql += '&charset=gb2312&format=xml&callback=?';
     // yql = encodeURI(yql);
 
-    var myql = 'http://files.flinhong.com/miniproxy/index.php?' + urlString;
+    var myql = 'https://flinhong.herokuapp.com/miniproxy/index.php?' + urlString;
 
     // console.log(yql)
     // console.log(yql);
