@@ -1,0 +1,27 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "description": "playground",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gulp minify-css; gulp minify-js; gulp minify-html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flinhong/playground.git"
+  },
+  "author": "Frank Lin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/flinhong/playground/issues"
+  },
+  "homepage": "https://github.com/flinhong/playground#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.3",
+    "gulp-htmlmin": "^4.0.0",
+    "gulp-uglify": "^3.0.0",
+    "pump": "^3.0.0"
+  }
+}
