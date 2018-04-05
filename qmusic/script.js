@@ -100,7 +100,7 @@ $( document ).ready(function() {
     // yql += '&charset=gb2312&format=xml&callback=?';
     // yql = encodeURI(yql);
 
-    // var myql = 'http://files.flinhong.com/miniproxy/index.php?' + urlString;
+    var myql = 'https://indevsync.herokuapp.com/index.php?' + urlString;
 
     // console.log(yql)
     // console.log(yql);
@@ -123,10 +123,23 @@ $( document ).ready(function() {
     //   $('#lyric').html('出错了');
     // })
 
-    $.getJSON("http://files.flinhong.com/xml2json.php?callback=?", {feed: urlString}, function(data) {
-      console.log(data);
+    $.get(myql, function() {
     })
-
+    .done(function(data) {
+      var xmlDoc = data;
+      if (xmlDoc) {
+        var $xml = $(xmlDoc);
+        var lyric = $xml.find('lyric').text();
+        // console.log(lyric);
+        var html = `<pre>${lyric}</pre>`
+        $('#lyric').html(html);
+      } else {
+        $('#lyric').html('没找到歌词');
+      }
+    })
+    .fail(function() {
+      $('#lyric').html('没有找到歌词');
+    });
 
   }
 
