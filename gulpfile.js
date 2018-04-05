@@ -24,7 +24,7 @@ gulp.task('babel-js', () => {
 
 gulp.task('minify-js', function (callback) {
   pump([
-        gulp.src(['./**/*.js', '!./node_modules/**/*.js', '!./gulpfile.js', '!./todolist/src/*.js']),
+        gulp.src(['./**/*.js', '!./node_modules/**/*.js', '!./gulpfile.js', '!./todolist/src/*.js', '!./ipinfo/**/*.js']),
         uglify(),
         gulp.dest('./')
     ],
