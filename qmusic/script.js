@@ -29,14 +29,16 @@ $( document ).ready(function() {
           $(this).click(function() {
             var id = $(this).attr('id');
             var mid = $(this).attr('class');
-            $('#lyric').text('歌词加载中...')
+            var albumid = $(this).attr('data-album');
+            $('#lyric').text('歌词加载中...');
+            $('#card .btn').addClass('d-none');
             queryLrc(id);
             var name = $(this).find('td')[0].innerHTML;
             var singer = $(this).find('td')[1].innerHTML;
             $('#card .card-title').text(name);
             $('#card .card-subtitle').text(singer);
             $('#card').removeClass('d-none');
-            queryMusic(mid);
+            queryMusic(mid, name, singer, albumid);
           })
         })
       },
@@ -48,7 +50,7 @@ $( document ).ready(function() {
 
 
   // get music path
-  function queryMusic(mid) {
+  function queryMusic(mid, name, singer, albumid) {
     // var t = (new Date).getUTCMilliseconds();
     // var guid = Math.round(2147483647 * Math.random()) * t % 1e10;
     // document.cookie = "pgv_pvid=" + guid + "; Expires=Sun, 18 Jan 2038 00:00:00 GMT; PATH=/; DOMAIN=qq.com;";
@@ -81,11 +83,44 @@ $( document ).ready(function() {
 
     var urlString = `http://isure.stream.qqmusic.qq.com/C100${mid}.m4a?fromtag=66`;
     // console.log(urlString);
-    var audio = `<audio src="${urlString}" controls></audio>`
-    $('#audio').html(audio);
-    var wid = $('#music-info').width();
-    $('#audio audio').css('width', wid);
-    $('#audio').removeClass('d-none');
+    // var audio = `<audio src="${urlString}" controls></audio>`
+    // $('#audio').html(audio);
+    // var wid = $('#music-info').width();
+    // $('#audio audio').css('width', wid);
+    // $('#audio').removeClass('d-none');
+    var musicTitle = name;
+    var album = `https://y.gtimg.cn/music/photo_new/T002R300x300M000${albumid}.jpg`;
+
+
+    $("body").on('DOMSubtreeModified', "#lyric", function() {
+      var lyric = $('#lyric').text();
+      if (lyric) {
+        const ap = new APlayer({
+          container: document.getElementById('aplayer'),
+          theme: '#ff4040',
+          lrcType: 1,
+          audio: [{
+            name: musicTitle,
+            artist: singer,
+            url: urlString,
+            cover: album,
+            lrc: lyric
+          }]
+        });
+      } else {
+        const ap = new APlayer({
+          container: document.getElementById('aplayer'),
+          theme: '#ff4040',
+          audio: [{
+            name: musicTitle,
+            artist: singer,
+            url: urlString,
+            cover: album
+          }]
+        });
+      }
+
+    });
   }
 
   function queryLrc(id) {
@@ -124,8 +159,7 @@ $( document ).ready(function() {
     // })
 
     $.get(myql, function() {
-    })
-    .done(function(data) {
+    }).done(function(data) {
       var xmlDoc = data;
       if (xmlDoc) {
         var $xml = $(xmlDoc);
@@ -133,14 +167,24 @@ $( document ).ready(function() {
         // console.log(lyric);
         var html = `<pre>${lyric}</pre>`
         $('#lyric').html(html);
+        $('#card .btn').removeClass('d-none');
+        $('#card .btn').click(function() {
+          copyToClipboard('#lyric');
+        })
       } else {
-        $('#lyric').html('没找到歌词');
+        $('#lyric').html('没有找到歌词');
       }
-    })
-    .fail(function() {
+    }).fail(function(error) {
       $('#lyric').html('没有找到歌词');
     });
 
+    function copyToClipboard(element) {
+      var $temp = $("<input>");
+      $("body").append($temp);
+      $temp.val($(element).text().replace(/\[/g, "\n[")).select();
+      document.execCommand("copy");
+      $temp.remove();
+    }
   }
 
   // $.getJSON( "./data.json", function( data ) {
@@ -176,11 +220,12 @@ $( document ).ready(function() {
     for (item in list) {
       count++;
       var album = list[item].albumname;
+      var albumid = list[item].albummid;
       var songname = list[item].songname;
       var songmid = list[item].songmid;
       var songid = list[item].songid;
       var singer = list[item].singer[0].name;
-      html += `<tr id="${songid}" class="${songmid}"><th scope="row">${count}</th><td>${songname}</td><td>${singer}</td><td>${album}</td>`;
+      html += `<tr id="${songid}" class="${songmid}" data-album="${albumid}"><th scope="row">${count}</th><td>${songname}</td><td>${singer}</td><td>${album}</td>`;
     }
     html += '</tbody></table>'
     return html

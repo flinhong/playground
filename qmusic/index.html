@@ -7,6 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css">
 
     <title>QQ 音乐歌词搜索</title>
   </head>
@@ -33,7 +34,7 @@
               <button type="submit" class="btn btn-primary">搜索</button>
           </div>
           <div class="col-md-6 text-center">
-              <div id="audio" class="d-none"></div>
+              <!-- <div id="audio" class="d-none"></div> -->
           </div>
         </div>
       </form>
@@ -43,11 +44,13 @@
       <div class="row">
         <div id="music-info" class="col-md-6"></div>
         <div class="col-md-6 d-none" id="card">
-          <div class="card">
+          <div id="aplayer"></div>
+          <div class="card border-light">
             <div class="card-body">
               <h5 class="card-title"></h5>
               <h6 class="card-subtitle mb-2 text-muted"></h6>
-              <p class="card-text" id="lyric"></p>
+              <p class="card-text" id="lyric" style="max-height: 300px; overflow-y:auto"></p>
+              <a href="#" class="btn btn-primary d-none">复制歌词</a>
             </div>
           </div>
         </div>
@@ -58,8 +61,7 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>
