@@ -16,7 +16,7 @@ gulp.task('minify-css', () => {
 
 gulp.task('minify-js', function (callback) {
   pump([
-        gulp.src(['./**/*.js']),
+        gulp.src(['./**/*.js', '!./gulpfile.js']),
         uglify(),
         gulp.dest('./')
     ],
