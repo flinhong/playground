@@ -217,7 +217,7 @@ $( document ).ready(function() {
     </tr>
     </thead><tbody>`;
     var count = 0;
-    for (item in list) {
+    for (var item in list) {
       count++;
       var album = list[item].albumname;
       var albumid = list[item].albummid;

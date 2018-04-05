@@ -3,7 +3,7 @@ let cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
 const pump = require('pump');
 const htmlmin = require('gulp-htmlmin');
-
+const babel = require('gulp-babel');
  
 gulp.task('minify-css', () => {
   return gulp.src('./**/*.css')
@@ -14,9 +14,17 @@ gulp.task('minify-css', () => {
     .pipe(gulp.dest('./'));
 });
 
+gulp.task('babel-js', () => {
+  return gulp.src(['./qmusic/script.js'])
+    .pipe(babel({
+      presets: ['es2015']
+    }))
+    .pipe(gulp.dest('./qmusic/'))
+});
+
 gulp.task('minify-js', function (callback) {
   pump([
-        gulp.src(['./**/*.js', '!./gulpfile.js', '!./qmusic/script.js']),
+        gulp.src(['./**/*.js', '!./gulpfile.js']),
         uglify(),
         gulp.dest('./')
     ],
