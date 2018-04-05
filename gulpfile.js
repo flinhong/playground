@@ -6,29 +6,29 @@ const htmlmin = require('gulp-htmlmin');
 
  
 gulp.task('minify-css', () => {
-  return gulp.src('/**/*.css')
+  return gulp.src('./**/*.css')
     .pipe(cleanCSS({
       compatibility: 'ie8',
       level: 2
     }))
-    .pipe(gulp.dest('/'));
+    .pipe(gulp.dest('./'));
 });
 
 gulp.task('minify-js', function (callback) {
   pump([
-        gulp.src(['/**/*.js']),
+        gulp.src(['./**/*.js']),
         uglify(),
-        gulp.dest('/')
+        gulp.dest('./')
     ],
     callback
   );
 });
 
 gulp.task('minify-html', function() {
-  return gulp.src('/**/*.html')
+  return gulp.src('./**/*.html')
     .pipe(htmlmin({
       collapseWhitespace: true,
       removeComments: true
     }))
-    .pipe(gulp.dest('/'));
+    .pipe(gulp.dest('./'));
 });
