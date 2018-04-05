@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "gulp minify-css; gulp babel-js; gulp minify-js; gulp minify-html"
+    "deploy": "gulp minify-css; gulp babel-js; gulp minify-js; gulp minify-html; rm -rf node_modules"
   },
   "repository": {
     "type": "git",
